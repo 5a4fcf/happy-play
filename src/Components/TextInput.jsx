@@ -1,9 +1,8 @@
 import { FormControl, FormLabel, TextField } from "@mui/material";
 
-export default function TextInput({label, name, handleChange}) {
-    
+export default function TextInput({label, name, handleChange, required=true}) {
     return (
-        <FormControl>
+        <FormControl required={required}>
             <FormLabel htmlFor={ name }>{ label }</FormLabel>
             <TextField
                 id={name}
@@ -11,11 +10,12 @@ export default function TextInput({label, name, handleChange}) {
                 name={name}
                 placeholder={label}
                 autoFocus
-                required={true}
+                required
                 fullWidth
                 variant="outlined"
-                sx={{ ariaLabel: 'text', height: '32px'}}
+                sx={{ ariaLabel: 'text', height: '32px', borderRadius: '32px'}}
                 onChange={handleChange}
+
             />
         </FormControl>
     )

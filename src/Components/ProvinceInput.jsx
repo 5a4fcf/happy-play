@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import { FormControl, FormLabel, MenuItem, Select } from "@mui/material";
 
-export default function ProvinceInput({regionCode, handleChange}) {
+export default function ProvinceInput({regionCode, handleChange, required=true}) {
     const [provinces, setProvinces] = useState([]);
 
     useEffect(() => {
@@ -18,12 +18,11 @@ export default function ProvinceInput({regionCode, handleChange}) {
     });
 
     return (
-        <FormControl fullWidth>
-            <InputLabel id="provinces">Province</InputLabel>
+        <FormControl fullWidth required>
+            <FormLabel for="provinces">Province</FormLabel>
             <Select
                 labelId="provinces"
                 name="province"
-                // value={region}
                 label="Province"
                 onChange={handleChange}
             >

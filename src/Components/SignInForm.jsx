@@ -1,46 +1,54 @@
 import { useState } from 'react';
 
+// styles and materials
 import './SignInForm.css';
+import {
+    styled,
+    Card,
+    Stack,
+    Button,
+    Box,
+    Divider,
+    Checkbox,
+    Typography,
+    FormControlLabel,
+    FormLabel,
+    Link,
+    Accordion,
+    AccordionDetails,
+    AccordionSummary
+} from '@mui/material';
+ 
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
+// assets
+import logo from '../esat-mock-logo.png';
+
+// components
 import TextInput from "./TextInput";
 import AddressInput from "./AddressInput";
 import ProvinceInput from './ProvinceInput';
 import MunicipalityInput from './MunicipalityInput';
 import BarangayInput from './BarangayInput';
-
-import { styled } from '@mui/material/styles';
-import MuiCard from '@mui/material/Card';
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
-import Checkbox from '@mui/material/Checkbox';
-import { Typography, FormControlLabel, Link } from '@mui/material';
-
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-
-import logo from '../esat-mock-logo.png';
 import NationalityInput from './NationalityInput';
 
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
-const Card = styled(MuiCard)(({ theme }) => ({
+const RegistrationCard = styled(Card)(({ theme }) => ({
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'row',
     alignSelf: 'center',
     width: '100%',
     margin: 'auto',
     [theme.breakpoints.up('sm')]: { width: '516px' }
 }));
 
-const SignUpContainer = styled(Stack)(({ theme }) => ({
+const SignUpContainer = styled(Stack)(( { theme } ) => ({
     minHeight: '100%',
-    padding: theme.spacing(2)
+    padding: theme.spacing(2),
+    justifyContent: 'space-between'
 }));
 
 const SubmitButton = styled(Button)(({ }) => ({
@@ -64,8 +72,8 @@ export default function SignInForm() {
     };
 
     return (
-        <SignUpContainer direction="column" justifyContent="space-between">
-            <Card variant="outlined" sx={{ display: 'flex', flexDirection: 'row'}}>
+        <SignUpContainer direction="column">
+            <RegistrationCard variant="outlined">
                 <Box sx={{width: '156px', background: "rgb(75,108,183)", background: "linear-gradient(77deg, rgba(75,108,183,1) 30%, rgba(24,40,72,1) 100%)"}}>
                     <Typography sx={{ color: '#F4F3FC80', fontWeight: 900, fontSize: '32px', transform: 'translate(-40px, 180px) rotate(-90deg)'}}>REGISTRATION</Typography>
                 </Box>
@@ -73,9 +81,7 @@ export default function SignInForm() {
                     <Box component="img" src={ logo }  sx={{ height: "150px", width: "auto" }}></Box>
                     <Divider></Divider>
                     <Typography
-                        component="p"
-                        variant="p"
-                        sx={{ width: '100%', fontSize: '16px', fontWeight: 600, lineHeight: '24px' }}
+                        sx={{ width: '100%', fontSize: '16px', fontWeight: 600, lineHeight: '24px', paddingTop: '16px' }}
                     >
                         Happy Play Registration
                     </Typography>
@@ -101,13 +107,14 @@ export default function SignInForm() {
 
                         <NationalityInput onChange={handleChange}></NationalityInput>
 
-                        <Accordion>
+                        <Accordion elevation={0}>
                             <AccordionSummary
                                 expandIcon={<ExpandMoreIcon />}
                                 aria-controls="panel2-content"
                                 id="panel2-header"
+                                type="text"
                             >
-                            <Typography>Current Address</Typography>
+                            <Typography >Current Address</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
                                 <AddressInput handleChange={handleChange}></AddressInput>
@@ -147,7 +154,7 @@ export default function SignInForm() {
                         </SubmitButton>
                     </Box>
                 </Box>
-            </Card>
+            </RegistrationCard>
         </SignUpContainer>
     )
 }

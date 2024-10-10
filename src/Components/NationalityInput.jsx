@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import { useState } from "react";
+import { FormControl, MenuItem, Select, FormLabel } from "@mui/material";
 
-export default function NationalityInput({handleChange}) {
+export default function NationalityInput({handleChange, required}) {
     const [nationalities, setNationalities] = useState([{
         code: 1,
         name: "Philippines"
@@ -14,8 +14,8 @@ export default function NationalityInput({handleChange}) {
     });
 
     return (
-        <FormControl fullWidth>
-            <InputLabel id="nationality">Nationality</InputLabel>
+        <FormControl fullWidth required>
+<           FormLabel htmlFor="nationality">Nationality</FormLabel>
             <Select
                 labelId="nationality"
                 name="nationality"

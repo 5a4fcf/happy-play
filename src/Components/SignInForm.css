@@ -12,3 +12,12 @@
     font: 'Inter';
     font-size: 16px;
 }
+
+.MuiFormLabel-asterisk {
+    color: #DC4C64;
+    font-size: 25px;
+}
+
+.button {
+    background-color: red;
+}

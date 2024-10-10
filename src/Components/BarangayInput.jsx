@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import { FormControl, FormLabel, MenuItem, Select } from "@mui/material";
 
-export default function BarangayInput({municipalityCode, handleChange}) {
+export default function BarangayInput({municipalityCode, handleChange, required=true}) {
     const [barangays, setBarangays] = useState([]);
-
-    https://psgc.gitlab.io/api//cities-municipalities/$municipalityCode/barangays
 
     useEffect(() => {
         fetch(`https://psgc.gitlab.io/api//cities-municipalities/${municipalityCode}/barangays`).then(async(response) => {
@@ -20,12 +18,11 @@ export default function BarangayInput({municipalityCode, handleChange}) {
     });
 
     return (
-        <FormControl fullWidth>
-            <InputLabel id="barangays">Barangay</InputLabel>
+        <FormControl fullWidth required>
+            <FormLabel for="barangays">Barangay</FormLabel>
             <Select
                 labelId="barangays"
                 name="barangay"
-                // value={region}
                 label="Barangay"
                 onChange={handleChange}
             >
