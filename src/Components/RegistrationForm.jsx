@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 // styles and materials
-import './SignInForm.css';
+import './RegistrationForm.css';
 import {
     styled,
     Card,
@@ -12,7 +12,6 @@ import {
     Checkbox,
     Typography,
     FormControlLabel,
-    FormLabel,
     Link,
     Accordion,
     AccordionDetails,
@@ -29,7 +28,7 @@ import logo from '../esat-mock-logo.png';
 
 // components
 import TextInput from "./TextInput";
-import AddressInput from "./AddressInput";
+import Region from "./Region";
 import ProvinceInput from './ProvinceInput';
 import MunicipalityInput from './MunicipalityInput';
 import BarangayInput from './BarangayInput';
@@ -117,7 +116,7 @@ export default function SignInForm() {
                             <Typography >Current Address</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
-                                <AddressInput handleChange={handleChange}></AddressInput>
+                                <Region handleChange={handleChange}></Region>
                                 <ProvinceInput regionCode={inputs.region} handleChange={handleChange}></ProvinceInput>
                                 <MunicipalityInput provinceCode={inputs.province} handleChange={handleChange}></MunicipalityInput>
                                 <BarangayInput municipalityCode={inputs.municipality} handleChange={handleChange}></BarangayInput>

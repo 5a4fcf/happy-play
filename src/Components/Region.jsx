@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { FormControl, MenuItem, Select, FormLabel } from "@mui/material";
 
-export default function AddressInput({handleChange, required=true}) {
+export default function Region({handleChange, required=true}) {
     const [regions, setRegions] = useState([]);
 
     useEffect(() => {
+        // need to implement isLoading some time
         fetch("https://psgc.gitlab.io/api/regions/").then(async(response) => {
             const regionsList = await response.json();
             setRegions(regionsList);
@@ -23,7 +24,6 @@ export default function AddressInput({handleChange, required=true}) {
             <Select
                 labelId="region"
                 name="region"
-                // value={region}
                 label="Region"
                 onChange={handleChange}
             >
