@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
 export default function BarangayInput({municipalityCode, handleChange}) {
     const [barangays, setBarangays] = useState([]);
@@ -8,24 +9,28 @@ export default function BarangayInput({municipalityCode, handleChange}) {
     useEffect(() => {
         fetch(`https://psgc.gitlab.io/api//cities-municipalities/${municipalityCode}/barangays`).then(async(response) => {
             const barangaysList = await response.json();
-            console.log(barangaysList)
             setBarangays(barangaysList);
         });
     }, [municipalityCode]);
 
     const barangaysOptions = barangays.map((barangay) => {
         return (
-            <option value={barangay.code}>{ barangay.name }</option>
+            <MenuItem value={barangay.code}>{ barangay.name }</MenuItem>
         )
     });
 
     return (
-        !municipalityCode ? <></> :
-        <>
-            <label for="barangays">Barangay</label>
-            <select id="barangay" name="barangay" onChange={handleChange}>
-                {barangaysOptions}
-            </select>
-        </>
+        <FormControl fullWidth>
+            <InputLabel id="barangays">Barangay</InputLabel>
+            <Select
+                labelId="barangays"
+                name="barangay"
+                // value={region}
+                label="Barangay"
+                onChange={handleChange}
+            >
+                { barangaysOptions }
+            </Select>
+        </FormControl>
     )
 }

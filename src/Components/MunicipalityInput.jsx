@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
 export default function MunicipalityInput({provinceCode, handleChange}) {
     const [municipalities, setMunicipalities] = useState([]);
@@ -6,24 +7,28 @@ export default function MunicipalityInput({provinceCode, handleChange}) {
     useEffect(() => {
         fetch(`https://psgc.gitlab.io/api/provinces/${provinceCode}/cities-municipalities`).then(async(response) => {
             const municipalitiesList = await response.json();
-            console.log(municipalitiesList)
             setMunicipalities(municipalitiesList);
         });
     }, [provinceCode]);
 
     const municipalitiesOptions = municipalities.map((municipality) => {
         return (
-            <option value={municipality.code}>{ municipality.name }</option>
+            <MenuItem value={municipality.code}>{ municipality.name }</MenuItem>
         )
     });
 
     return (
-        !provinceCode ? <></> :
-        <>
-            <label for="municipalities">Municipality</label>
-            <select id="municipality" name="municipality" onChange={handleChange}>
-                {municipalitiesOptions}
-            </select>
-        </>
+        <FormControl fullWidth>
+            <InputLabel id="municipalities">Municipality</InputLabel>
+            <Select
+                labelId="municipalities"
+                name="municipality"
+                // value={region}
+                label="Municipality"
+                onChange={handleChange}
+            >
+                { municipalitiesOptions }
+            </Select>
+        </FormControl>
     )
 }

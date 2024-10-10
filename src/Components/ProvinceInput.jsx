@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
 export default function ProvinceInput({regionCode, handleChange}) {
     const [provinces, setProvinces] = useState([]);
@@ -6,24 +7,28 @@ export default function ProvinceInput({regionCode, handleChange}) {
     useEffect(() => {
         fetch(`https://psgc.gitlab.io/api/regions/${regionCode}/provinces`).then(async(response) => {
             const provincesList = await response.json();
-            console.log(provincesList)
             setProvinces(provincesList);
         });
     }, [regionCode]);
 
     const provincesOptions = provinces.map((province) => {
         return (
-            <option value={province.code}>{ province.name }</option>
+            <MenuItem value={province.code}>{ province.name }</MenuItem>
         )
     });
 
     return (
-        !regionCode ? <></> :
-        <>
-            <label for="provinces">Provinces</label>
-            <select id="province" name="province" onChange={handleChange}>
+        <FormControl fullWidth>
+            <InputLabel id="provinces">Province</InputLabel>
+            <Select
+                labelId="provinces"
+                name="province"
+                // value={region}
+                label="Province"
+                onChange={handleChange}
+            >
                 { provincesOptions }
-            </select>
-        </>
+            </Select>
+        </FormControl>
     )
 }

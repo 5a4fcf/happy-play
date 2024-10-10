@@ -1,15 +1,8 @@
 import { useEffect, useState } from "react";
-import ProvinceInput from './ProvinceInput';
-import MunicipalityInput from './MunicipalityInput';
-import BarangayInput from "./BarangayInput";
-import TextInput from "./TextInput";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
 export default function AddressInput({handleChange}) {
     const [regions, setRegions] = useState([]);
-    // const [selectedRegion, setSelectedRegion] = useState(null);
-    // const [selectedProvince, setSelectedProvince] = useState(null);
-    // const [selectedMunicipality, setSelectedMunicipality] = useState(null);
-    // const [selectedBarangay, setSelectedBarangay] = useState(null);
 
     useEffect(() => {
         fetch("https://psgc.gitlab.io/api/regions/").then(async(response) => {
@@ -20,17 +13,22 @@ export default function AddressInput({handleChange}) {
 
     const regionsOptions = regions.map((region) => {
         return (
-            <option value={region.code}>{ region.name }</option>
+            <MenuItem value={region.code}>{ region.name }</MenuItem>
         )
     });
 
     return (
-        <>
-            <label for="region">Region</label>
-            <select id="region" name="region" onChange={handleChange}>
+        <FormControl fullWidth>
+            <InputLabel id="region">Region</InputLabel>
+            <Select
+                labelId="region"
+                name="region"
+                // value={region}
+                label="Region"
+                onChange={handleChange}
+            >
                 {regionsOptions}
-            </select>
-            
-        </>
+            </Select>
+        </FormControl>
     )
 }
