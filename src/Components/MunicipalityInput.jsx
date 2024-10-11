@@ -23,8 +23,8 @@ export default function MunicipalityInput({provinceCode, handleChange, required=
             <Select
                 labelId="municipalities"
                 name="municipality"
-                // value={region}
                 label="Municipality"
+                sx={{ height: '32px', display: 'flex', alignItems: 'center', borderRadius: '12px', border: '1px'}}
                 onChange={handleChange}
             >
                 { municipalitiesOptions }

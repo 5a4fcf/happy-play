@@ -2,7 +2,7 @@ import { FormControl, FormLabel, TextField } from "@mui/material";
 
 export default function TextInput({label, name, handleChange, required=true}) {
     return (
-        <FormControl required={required}>
+        <FormControl required={required} fullWidth>
             <FormLabel htmlFor={ name }>{ label }</FormLabel>
             <TextField
                 id={name}
@@ -11,9 +11,20 @@ export default function TextInput({label, name, handleChange, required=true}) {
                 placeholder={label}
                 autoFocus
                 required
-                fullWidth
                 variant="outlined"
-                sx={{ ariaLabel: 'text', height: '32px', borderRadius: '32px'}}
+                sx={{
+                    borderRadius: '16px',
+                    '& .MuiOutlinedInput-root': {
+                        borderRadius: '16px',
+                        border: '1px',
+                        height: '32px',
+                        display: 'flex'
+                    },
+                    border: '1px',
+                    height: '32px',
+                    display: 'flex'
+
+                }}
                 onChange={handleChange}
 
             />

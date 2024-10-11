@@ -13,9 +13,13 @@ import {
     Typography,
     FormControlLabel,
     Link,
+    Grid2,
     Accordion,
     AccordionDetails,
-    AccordionSummary
+    AccordionSummary,
+    FormGroup,
+    FormLabel,
+    FormControl
 } from '@mui/material';
  
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -100,9 +104,37 @@ export default function SignInForm() {
                         <TextInput label="First Name" name="firstName" handleChange={handleChange}></TextInput>
                         <TextInput label="Last Name" name="lasttName" handleChange={handleChange}></TextInput>
 
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DatePicker label="Birthday" name="birthDate" onChange={(value) => setInputs({...inputs, birthDate: value})}></DatePicker>
-                        </LocalizationProvider>
+
+                        <FormControl required={true} fullWidth>
+                            <FormLabel htmlFor="birthDate">Birthday</FormLabel>
+                            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                <DatePicker
+                                    name="birthDate"
+                                    sx={{
+                                        height: '32px',
+                                        borderRadius: '16px',
+                                        border: '1px',
+                                        height: '32px',
+                                        display: 'flex',
+                                        '& .MuiOutlinedInput-root': {
+                                            borderRadius: '16px',
+                                            border: '1px',
+                                            height: '32px',
+                                            display: 'flex'
+                                        },
+                                        '& .MuiIconButton-root': {
+                                            borderTopRightRadius: '16px',
+                                            borderBottomRightRadius: '16px',
+                                            borderTopLeftRadius: '0px',
+                                            borderBottomLeftRadius: '0px',
+                                            height: '32px',
+                                            backgroundColor: '#4845D2',
+                                            color: '#F4F3FC'
+                                        }
+                                    }}
+                                    onChange={(value) => setInputs({...inputs, birthDate: value})} />
+                            </LocalizationProvider>
+                        </FormControl>
 
                         <NationalityInput onChange={handleChange}></NationalityInput>
 
@@ -115,34 +147,46 @@ export default function SignInForm() {
                             >
                             <Typography >Current Address</Typography>
                             </AccordionSummary>
-                            <AccordionDetails>
-                                <Region handleChange={handleChange}></Region>
-                                <ProvinceInput regionCode={inputs.region} handleChange={handleChange}></ProvinceInput>
-                                <MunicipalityInput provinceCode={inputs.province} handleChange={handleChange}></MunicipalityInput>
-                                <BarangayInput municipalityCode={inputs.municipality} handleChange={handleChange}></BarangayInput>
-                                <TextInput label="Street/Sitio" name="street" handleChange={handleChange}></TextInput>
+                            <AccordionDetails sx={{padding: '0px'}}>
+                                <Grid2 container spacing={2}>
+                                    <Grid2 item size={6}>
+                                        <Region handleChange={handleChange}></Region>
+                                    </Grid2>
+                                    <Grid2 item size={6}>
+                                        <ProvinceInput regionCode={inputs.region} handleChange={handleChange}></ProvinceInput>
+                                    </Grid2>
+                                    <Grid2 item size={6}>
+                                        <MunicipalityInput provinceCode={inputs.province} handleChange={handleChange}></MunicipalityInput>
+                                    </Grid2>
+                                    <Grid2 item size={6}>
+                                        <BarangayInput municipalityCode={inputs.municipality} handleChange={handleChange}></BarangayInput>
+                                    </Grid2>
+                                    <TextInput label="Street/Sitio" name="street" handleChange={handleChange}></TextInput>
+                                </Grid2>
                             </AccordionDetails>
                         </Accordion>
                        
-                        <FormControlLabel
-                            control={<Checkbox value="agreeToTerms" color="primary" />}
-                            label={
-                                <Typography sx={{ textAlign: 'center' }}>
-                                    I agree to Happy Play {' '}
-                                    <span>
-                                        <Link>
-                                        Privacy Policy
-                                        </Link>
-                                    </span>
-                                    {' '} and {' '}
-                                    <span>
-                                        <Link>
-                                        Terms of Use
-                                        </Link>
-                                    </span>
-                                </Typography>
-                            }
-                        />
+                       <FormGroup sx={{padding: '0px 32px 50px 32px'}}>
+                            <FormControlLabel
+                                control={<Checkbox value="agreeToTerms" color="primary" size="small" />}
+                                label={
+                                    <Typography sx={{ textAlign: 'left', fontSize: '12px' }}>
+                                        I agree to Happy Play {' '}
+                                        <span>
+                                            <Link>
+                                            Privacy Policy
+                                            </Link>
+                                        </span>
+                                        {' '} and {' '}
+                                        <span>
+                                            <Link>
+                                            Terms of Use
+                                            </Link>
+                                        </span>
+                                    </Typography>
+                                }
+                            />
+                        </FormGroup>
                         <SubmitButton
                             type="submit"
                             fullWidth

@@ -26,6 +26,7 @@ export default function Region({handleChange, required=true}) {
                 name="region"
                 label="Region"
                 onChange={handleChange}
+                sx={{ height: '32px', display: 'flex', alignItems: 'center', borderRadius: '12px', border: '1px'}}
             >
                 {regionsOptions}
             </Select>

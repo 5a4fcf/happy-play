@@ -24,6 +24,7 @@ export default function BarangayInput({municipalityCode, handleChange, required=
                 labelId="barangays"
                 name="barangay"
                 label="Barangay"
+                sx={{ height: '32px', display: 'flex', alignItems: 'center', borderRadius: '12px', border: '1px'}}
                 onChange={handleChange}
             >
                 { barangaysOptions }

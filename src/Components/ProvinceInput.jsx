@@ -24,6 +24,7 @@ export default function ProvinceInput({regionCode, handleChange, required=true})
                 labelId="provinces"
                 name="province"
                 label="Province"
+                sx={{ height: '32px', display: 'flex', alignItems: 'center', borderRadius: '16px', border: '1px'}}
                 onChange={handleChange}
             >
                 { provincesOptions }

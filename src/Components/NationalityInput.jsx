@@ -20,6 +20,7 @@ export default function NationalityInput({handleChange, required}) {
                 labelId="nationality"
                 name="nationality"
                 label="Nationality"
+                sx={{ height: '32px', display: 'flex', alignItems: 'center', borderRadius: '16px', border: '1px'}}
                 onChange={handleChange}
             >
                 {nationalityOptions}
